@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # CONFIGURAZIONE
 PROJECT_ID = "soldi-backend-486215"
-LOCATION = "eu" 
+LOCATION = "us" 
 PROCESSOR_ID = "2d7b989319d3eb7d"
 FOLDER_ID = "15bx638Hoh87lZfMBlRBE4bnrcIKCswmN"
 SHEET_ID = "1GUAQwmmjqi40Ni9x5m9pjEbCXfGf1HAslnhJPgOoWD4"
