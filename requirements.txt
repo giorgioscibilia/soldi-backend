@@ -1,3 +1,5 @@
+flask
 gspread
 google-auth
-flask
+google-cloud-documentai
+google-api-python-client
