@@ -22,7 +22,7 @@ def extract_data_from_text(text):
     
     # Esempio: Cerchiamo l'importo netto o il totale (adattabile alle tue keyword)
     # Cerchiamo una cifra decimale dopo una keyword tipica
-    amount_match = re.search(r'(?:NET A PAYER|TOTAL|NET PAYE)\s*[:]*\s*([\d\s\.,]+)', text, re.IGNORE_CASE)
+    amount_match = re.search(r'(?:NET A PAYER|TOTAL|NET PAYE)\s*[:]*\s*([\d\s\.,]+)', text, re.IGNORECASE)
     amount_val = amount_match.group(1).replace(' ', '').replace(',', '.') if amount_match else "0.00"
     
     return date_val, amount_val
