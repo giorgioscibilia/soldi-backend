@@ -36,12 +36,16 @@ def run_ingestion():
         log_sheet = sh.worksheet("Log_Compensation")
         
         drive_service = build('drive', 'v3', credentials=creds)
-         # Questo forza il codice a guardare i server europei
-        opts = {"api_endpoint": f"{LOCATION}-documentai.googleapis.com"}
+
+        # Forza l'uso del server Europeo con l'endpoint corretto
+        endpoint = f"{LOCATION}-documentai.googleapis.com"
+        client_options = {"api_endpoint": endpoint}
+        
         docai_client = documentai.DocumentProcessorServiceClient(
             credentials=creds, 
-            client_options=opts
+            client_options=client_options # Assicurati che il nome sia client_options
         )
+        
         resource_name = docai_client.processor_path(PROJECT_ID, LOCATION, PROCESSOR_ID)
 
         # 1. Recupera lista file
