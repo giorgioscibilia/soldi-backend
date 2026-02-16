@@ -51,12 +51,14 @@ def run_ingestion():
         drive_service = build('drive', 'v3', credentials=creds)
         
         # Configurazione Document AI con Endpoint EU
-        endpoint = f"{LOCATION}-documentai.googleapis.com"
-        client_options = {"api_endpoint": endpoint}
-        docai_client = documentai.DocumentProcessorServiceClient(
-            credentials=creds, 
-            client_options=client_options
-        )
+        # endpoint = f"{LOCATION}-documentai.googleapis.com"
+        # client_options = {"api_endpoint": endpoint}
+        # docai_client = documentai.DocumentProcessorServiceClient(
+        #     credentials=creds, 
+        #     client_options=client_options
+        # )
+        docai_client = documentai.DocumentProcessorServiceClient(credentials=creds)
+        
         resource_name = docai_client.processor_path(PROJECT_ID, LOCATION, PROCESSOR_ID)
 
         # 1. Recupera la lista file - LIMITATA A 1 PER TEST
