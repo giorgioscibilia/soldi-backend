@@ -57,6 +57,9 @@ def run_ingestion():
 
         processed_count = 0
         for file in files:
+            # PROVA SOLO IL PRIMO FILE PER TESTARE I PERMESSI
+            print(f"Processando: {file['name']}")
+            
             # 2. Leggi il contenuto del PDF
             file_content = drive_service.files().get_media(fileId=file['id']).execute()
             
@@ -69,8 +72,11 @@ def run_ingestion():
             date_val, amount_val = extract_data_from_text(result.document.text)
             log_sheet.append_row([date_val, amount_val, "Renault", "Fixed", f"Auto-ingested: {file['name']}"])
             processed_count += 1
+            
+            # FERMATI AL PRIMO PER EVITARE IL TIMEOUT
+            break 
 
-        return f"🚀 Successo! Processati {processed_count} file. Controlla il foglio Excel!", 200
+        return f"🚀 Test singolo riuscito! File: {files[0]['name']}. Controlla l'Excel!", 200
 
     except Exception as e:
         return f"Errore durante l'ingestione: {str(e)}", 500
