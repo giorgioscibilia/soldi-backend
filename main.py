@@ -50,14 +50,18 @@ def run_ingestion():
         # Inizializzazione Drive
         drive_service = build('drive', 'v3', credentials=creds)
         
-        # Configurazione Document AI con Endpoint EU
-        # endpoint = f"{LOCATION}-documentai.googleapis.com"
-        # client_options = {"api_endpoint": endpoint}
-        # docai_client = documentai.DocumentProcessorServiceClient(
-        #     credentials=creds, 
-        #     client_options=client_options
-        # )
-        docai_client = documentai.DocumentProcessorServiceClient(credentials=creds)
+        # Inizializzazione Document AI con endpoint forzato su EU
+        # Questo risolve l'errore: "must match the server deployment 'us'"
+        endpoint = f"{LOCATION}-documentai.googleapis.com"
+        client_options = {"api_endpoint": endpoint}
+        
+        docai_client = documentai.DocumentProcessorServiceClient(
+            credentials=creds, 
+            client_options=client_options
+        )
+        
+        # Generiamo il percorso completo del processore
+        resource_name = docai_client.processor_path(PROJECT_ID, LOCATION, PROCESSOR_ID)
         
         resource_name = docai_client.processor_path(PROJECT_ID, LOCATION, PROCESSOR_ID)
 
