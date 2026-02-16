@@ -115,4 +115,5 @@ def run_ingestion():
         return f"Errore durante l'ingestione: {error_msg}", 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    # Aggiungiamo un timeout di 300 secondi per dare tempo all'OCR di finire
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)), threaded=True)
